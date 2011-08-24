@@ -67,11 +67,10 @@ class TestMessage (unittest.TestCase):
         print binascii.hexlify(packed)
         opts = msg.options
         self.assertTrue(isinstance(opts, tuple))
-        self.assertEqual(4, len(opts))
-        self.assertEqual(coapy.options.UriScheme.Type, opts[0].Type) # 3
-        self.assertEqual(coapy.options.Etag.Type, opts[1].Type) # 4
-        self.assertEqual(coapy.options.UriAuthority.Type, opts[2].Type) # 5
-        self.assertEqual(coapy.options.UriPath.Type, opts[3].Type) # 9
+        self.assertEqual(3, len(opts))
+        self.assertEqual(coapy.options.Etag.Type, opts[0].Type) # 4
+        self.assertEqual(coapy.options.UriAuthority.Type, opts[1].Type) # 5
+        self.assertEqual(coapy.options.UriPath.Type, opts[2].Type) # 9
 
 class TestEndPoint (unittest.TestCase):
 
