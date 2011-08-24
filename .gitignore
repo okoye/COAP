@@ -1,3 +1,4 @@
 doc/_build
 *.pyo
 *.pyc
+*.swp
