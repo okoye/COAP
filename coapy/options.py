@@ -560,7 +560,7 @@ def decode (num_options, payload):
 Registry = { }
 """A map from integral option types to the Python class that implements the option."""
 
-for _opt in (ContentType, UriScheme, UriAuthority, UriPath,
+for _opt in (ContentType, ProxyUri, UriAuthority, UriPath,
             Location, MaxAge, Etag, Block):
     Registry[_opt.Type] = _opt
 
