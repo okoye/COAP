@@ -81,7 +81,7 @@ class Message (object):
 
     OptionKeywords = { 'content_type' : coapy.options.ContentType,
                        'max_age' : coapy.options.MaxAge,
-                       'uri_scheme' : coapy.options.UriScheme,
+                       'proxy_uri' : coapy.options.ProxyUri,
                        'etag' : coapy.options.Etag,
                        'uri_authority' : coapy.options.UriAuthority,
                        'location' : coapy.options.Location,
