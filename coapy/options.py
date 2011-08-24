@@ -321,14 +321,21 @@ class ContentType (_Base):
     def __str__ (self):
         return '%s: %s' % (self.Name, self.value_as_string)
 
-class UriScheme (_StringValue_mixin, _Base):
-    """The schema part of the URI."""
+class ProxyUri (_StringValue_mixin, _Base):
+    """Absolute URI to be fetched by proxy"""
     
     Type = 3
-    Name = 'Uri-Scheme'
-    Default = 'coap'
-    """The default URI scheme is ``coap``."""
+    Name = 'Proxy-Uri'
+    Default = None
     
+    MIN_VALUE_LENGTH = 1
+    """A ProxyUri value :attr:`must have at least one
+    octet<coapy.options._StringValue_mixin.MIN_VALUE_LENGTH>`."""
+
+    MAX_VALUE_LENGTH = 270
+    """An ProxyUri value :attr:`must have at least one
+    octet<coapy.options._StringValue_mixin.MIN_VALUE_LENGTH>`."""
+
     _value = Default
 
 class UriAuthority (_StringValue_mixin, _Base):
