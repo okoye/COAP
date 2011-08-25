@@ -321,7 +321,7 @@ class ContentType (_Base):
     def __str__ (self):
         return '%s: %s' % (self.Name, self.value_as_string)
 
-class ProxyUri (_StringValue_mixin, _Base):
+class ProxyUri (_UriPath_mixin, _Base):
     """Absolute URI to be fetched by proxy"""
     
     Type = 3

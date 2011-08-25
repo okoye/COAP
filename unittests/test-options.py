@@ -127,6 +127,14 @@ class TestEtag (unittest.TestCase):
         self.assertEqual(4, i.length)
         self.assertRaises(ValueError, Etag, '12345')
 
+class TestProxyUri (unittest.TestCase):
+    def testLengthLimits (self):
+        self.assertRaises(ValueError, ProxyUri, '')
+        i = ProxyUri('http://foo.bar')
+        self.assertEqual('http://foo.bar',i.value)
+        self.assertEqual(14,i.length)
+        self.assertRaises(ValueError,ProxyUri,'/foo.bar')
+
 class TestLocation (unittest.TestCase):
     def assign_value (self, instance, value):
         instance.value = value
