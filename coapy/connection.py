@@ -220,31 +220,35 @@ class Message (object):
     payload = property(_get_payload, _set_payload)
 
     def build_uri (self, explicit=False):
-        uri_scheme = self.findOption(coapy.options.UriScheme)
-        uri_authority = self.findOption(coapy.options.UriAuthority)
+        uri_host = self.findOption(coapy.options.UriHost)
+        uri_port = self.findOption(coapy.options.UriPort)
         uri_path = self.findOption(coapy.options.UriPath)
+        uri_query = self.findOption(coapy.options.UriQuery)
         resp = []
         val = None
-        if uri_scheme is not None:
-            val = uri_scheme
-        elif explicit:
-            val = coapy.options.UriScheme.Default
-        if val is not None:
-            resp.append(val)
-            resp.append(':')
+        if uri_host is None:
+          raise Exception('Malformed url, no host info present.') #must fail!
+        else:
+          #TODO: Add support for coaps (dtls)
+          resp.append('coap://')
+          resp.append(uri_host)
         val = None
-        if uri_authority is not None:
-            val = uri_authority.value
-        elif explicit:
-            val = coapy.options.UriAuthority.Default
+        if uri_port is not None:
+            val = uri_port.value
+        elif explicit or not uri_port:
+            val = coapy.options.Port.Default
         if val is not None:
-            resp.append('//')
+            resp.append(':')
             resp.append(val)
-
+        val = None
         val = coapy.options.UriPath.Default
         if uri_path is not None:
             val = uri_path.value
         resp.append('/%s' % (val,))
+        val = None
+        if uri_query is not None:
+            val = uri_query.value
+            resp.append('?%s'%val)
         return ''.join(resp)
 
     def __str__ (self):
