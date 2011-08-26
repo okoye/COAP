@@ -192,12 +192,17 @@ class TestUriHost(unittest.TestCase):
         instance.value = value
 
     def test_default(self):
-        i = UriHost()
-        self.assertRaises(ValueError,self.assign_value,i,None)
+        #with self.assertRaises(ValueError):
+        #  UriHost()
+        #Hack for python 2.6 and lower.
+        try:
+          UriHost()
+          self.fail("Should not be able to construct empty UriHost")
+        except:
+          self.assertTrue(True)
 
     def test_value(self):
-        i = UriHost()
-        i.value = '192.168.1.101'
+        i = UriHost('192.168.1.101')
         self.assertEqual(i.value,'192.168.1.101')
         self.assertEqual(i.length,13)
 
@@ -343,7 +348,7 @@ class TestBlock (unittest.TestCase):
         
 class TestRegistry (unittest.TestCase):
     def testRegistry (self):
-        self.assertEqual(8, len(Registry))
+        self.assertEqual(10, len(Registry))
 
 if __name__ == '__main__':
     unittest.main()

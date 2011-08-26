@@ -83,7 +83,9 @@ class Message (object):
                        'max_age' : coapy.options.MaxAge,
                        'proxy_uri' : coapy.options.ProxyUri,
                        'etag' : coapy.options.Etag,
-                       'uri_authority' : coapy.options.UriAuthority,
+                       'uri_host' : coapy.options.UriHost,
+                       'uri_port' : coapy.options.UriPort,
+                       'uri_query': coapy.options.UriQuery,
                        'location' : coapy.options.Location,
                        'uri_path' : coapy.options.UriPath }
     """A map from Python identifiers to :mod:`option classes<coapy.options>`.
