@@ -333,19 +333,35 @@ class ProxyUri (_UriPath_mixin, _Base):
     octet<coapy.options._StringValue_mixin.MIN_VALUE_LENGTH>`."""
 
     MAX_VALUE_LENGTH = 270
-    """An ProxyUri value :attr:`must have at least one
+    """An ProxyUri value :attr:`must have at most 270
     octet<coapy.options._StringValue_mixin.MIN_VALUE_LENGTH>`."""
 
     _value = Default
 
-class UriAuthority (_StringValue_mixin, _Base):
-    """The authority (host+port) part of the URI."""
-    
+class UriHost (_StringValue_mixin, _Base):
+    """The Host part of the URI."""
+
     Type = 5
-    Name = 'Uri-Authority'
-    Default = ''
-    """By default, the URI authority is empty."""
+    Name = 'Uri-Host'
+    Default = None
+    """URI host must not be empty. It can assume the values of an ip literal or 
+      indirect hostname to be looked up."""
+
+    MIN_VALUE_LENGTH = 1
+    '''A UriHost must be of at least 1 octect'''
+
+    MAX_VALUE_LENGTH = 270
+    '''A UriHost is of maximum length 270 octects'''
+
+    _value = Default
+
+class UriPort (_IntegerValue_mixin, _Base):
+    '''The port part of the URI '''
     
+    Type = 7
+    Name = 'Uri-Port'
+    Default = 5683
+
     _value = Default
 
 class UriPath (_UriPath_mixin, _Base):
@@ -358,6 +374,17 @@ class UriPath (_UriPath_mixin, _Base):
     Name = 'Uri-Path'
     Default = ''
     """By default, the URI path is ``/``, represented as an empty string."""
+
+    _value = Default
+
+class UriQuery (_StringValue_mixin, _Base):
+    """Query part of the URI"""
+
+    Type = 15
+    Name = 'Uri-Query'
+    Default = ''
+    '''Key-value pairs of parameters for intended resource. By default it is
+    empty'''
 
     _value = Default
 
