@@ -169,6 +169,53 @@ class TestUriPath (unittest.TestCase):
         self.assertRaises(ValueError, self.assign_value, i, '/')
         self.assertRaises(ValueError, self.assign_value, i, '/.well-known/r')
 
+class TestUriQuery(unittest.TestCase):
+    def assign_value(self, instance, value):
+        instance.value = value
+
+    def test_default(self):
+        self.assertEqual('',UriQuery.Default)
+        i = UriQuery()
+        self.assertEqual(UriQuery.Default,i.value)
+        self.assertEqual(0,i.length)
+        self.assertTrue(i.is_default())
+
+    def test_value(self):
+        i = UriQuery()
+        i.value = 'dimm'
+        self.assertEqual('dimm',i.value)
+        self.assertEqual(4,i.length)
+        self.assertRaises(ValueError,self.assign_value,i,12)
+
+class TestUriHost(unittest.TestCase):
+    def assign_value(self, instance, value):
+        instance.value = value
+
+    def test_default(self):
+        i = UriHost()
+        self.assertRaises(ValueError,self.assign_value,i,None)
+
+    def test_value(self):
+        i = UriHost()
+        i.value = '192.168.1.101'
+        self.assertEqual(i.value,'192.168.1.101')
+        self.assertEqual(i.length,13)
+
+class TestUriPort(unittest.TestCase):
+    def assign_value(self, instance, value):
+        instance.value = value
+
+    def test_default(self):
+        self.assertEqual(5683,UriPort.Default)
+        i = UriPort()
+        self.assertEqual(5683,i.value)
+        
+    def test_value(self):
+        i = UriPort()
+        i.value = 5689
+        self.assertEqual(5689,i.value)
+        self.assertRaises(ValueError,self.assign_value,i,'chuka')
+
 class TestEncode (unittest.TestCase):
     def testEmpty (self):
         self.assertEqual((0, ''), encode([]))

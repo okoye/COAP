@@ -348,10 +348,10 @@ class UriHost (_StringValue_mixin, _Base):
       indirect hostname to be looked up."""
 
     MIN_VALUE_LENGTH = 1
-    '''A UriHost must be of at least 1 octect'''
+    '''A UriHost must be of at least 1 octet'''
 
     MAX_VALUE_LENGTH = 270
-    '''A UriHost is of maximum length 270 octects'''
+    '''A UriHost is of maximum length 270 octets'''
 
     _value = Default
 
