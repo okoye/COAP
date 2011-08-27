@@ -236,7 +236,7 @@ class Message (object):
         if uri_port is not None:
             val = uri_port.value
         elif explicit or not uri_port:
-            val = coapy.options.Port.Default
+            val = coapy.options.UriPort.Default
         if val is not None:
             resp.append(':')
             resp.append(val)
