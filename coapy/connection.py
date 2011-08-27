@@ -239,7 +239,7 @@ class Message (object):
             val = coapy.options.UriPort.Default
         if val is not None:
             resp.append(':')
-            resp.append(val)
+            resp.append('%d'%val)
         val = None
         val = coapy.options.UriPath.Default
         if uri_path is not None:
