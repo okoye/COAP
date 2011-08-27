@@ -231,7 +231,7 @@ class Message (object):
         else:
           #TODO: Add support for coaps (dtls)
           resp.append('coap://')
-          resp.append(uri_host)
+          resp.append(uri_host.value)
         val = None
         if uri_port is not None:
             val = uri_port.value
